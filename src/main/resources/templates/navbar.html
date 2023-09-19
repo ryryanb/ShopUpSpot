@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="icon" type="image/x-icon" th:href="@{/resource/images/favicon1.png}" />
+    <link rel="stylesheet" th:href="@{/resource/bootstrap/css/bootstrap.min.css}" />
+    <script th:src="@{/resource/js/jquery.js}"></script>
+    <script th:src="@{/resource/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/overall.css}" />
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class="nav navbar">
+            <img class="navbar-brand" th:src="@{/resource/images/shopieasy-logo.png}"
+                 th:href="@{/index}" width="200px" height="100px" alt="logo-image" />
+        </div>
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/index1}">ShopUpSpot</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/index1}">Home</a></li>
+                <li><a th:href="@{/getAllProducts}">Product List</a></li>
+                <li><a th:href="@{/aboutus}">About Us</a></li>
+                <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/contactus}">Contact Us</a></li>
+
+                <!-- Only admin can view this link -->
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/product/addProduct}">Add Product</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/cart/getCartById}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/customer/registration}"><span class="glyphicon glyphicon-log-user"></span> SignUp</a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

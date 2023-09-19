@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" th:href="@{/resource/bootstrap/css/bootstrap.min.css}" />
+    <script th:src="@{/resource/js/jquery.js}"></script>
+    <script th:src="@{/resource/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/overall.css}" />
+</head>
+<body>
+    <footer class="footer-distributed">
+        <div class="footer-right">
+            <a th:href="@{/index1}"><span class="glyphicon glyphicon-home"></span></a>
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <a th:href="@{/cart/getCartById}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+            </sec:authorize>
+            <a th:href="@{/login}"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+        </div>
+        <div class="footer-left">
+            <p class="footer-links">
+                <a th:href="@{/index1}">Home</a> · <a th:href="@{/aboutus}">About Us</a> ·
+                <a th:href="@{/getAllProducts}">Product List</a> · <a th:href="@{/contactus}">Contact Us</a>
+            </p>
+            <p>Created by Ryan Rey Bondoc - ShopUpSpot &copy; 2023</p>
+        </div>
+    </footer>
+</body>
+</html>
