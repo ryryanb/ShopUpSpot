@@ -13,7 +13,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "item")
 public class Product implements Serializable {
@@ -23,7 +25,7 @@ public class Product implements Serializable {
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String productId;
+	private Long productId;
 	
 	@Column(name="category")
 	private String productCategory;
@@ -44,80 +46,16 @@ public class Product implements Serializable {
 	private double productPrice;
 	
 	@Column(name = "unit")
-	private String unitStock;
+	private int unitStock;
 
 	@Transient
 	private MultipartFile productImage;
 
-	// Getters and Setter
-
-	public String getProductId() {
-		return productId;
-	}
-
-	public String getProductCategory() {
-		return productCategory;
-	}
-
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public String getProductManufacturer() {
-		return productManufacturer;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public double getProductPrice() {
-		return productPrice;
-	}
-
-	public String getUnitStock() {
-		return unitStock;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-
-	public void setProductCategory(String productCategory) {
-		this.productCategory = productCategory;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-
-	public void setProductManufacturer(String productManufacturer) {
-		this.productManufacturer = productManufacturer;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
-	}
-
-	public void setUnitStock(String unitStock) {
-		this.unitStock = unitStock;
-	}
-
-	public MultipartFile getProductImage() {
-		return productImage;
-	}
-
-	public void setProductImage(MultipartFile productImage) {
-		this.productImage = productImage;
-	}
+	
 
 	// Constructors
-	public Product(String productId, String productCategory, String productDescription, String productManufacturer,
-			String productName, double productPrice, String unitStock) {
+	public Product(Long productId, String productCategory, String productDescription, String productManufacturer,
+			String productName, double productPrice, int unitStock) {
 		super();
 		this.productId = productId;
 		this.productCategory = productCategory;

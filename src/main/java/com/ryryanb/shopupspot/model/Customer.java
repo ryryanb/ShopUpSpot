@@ -13,7 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
@@ -21,8 +23,8 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 2652327633296064143L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long customerId;
 	private String firstName;
 	private String lastName;
 	private String customerPhone;
@@ -60,14 +62,7 @@ public class Customer implements Serializable {
 		this.cart = cart;
 	}
 
-	public String getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(String custmerId) {
-		this.customerId = custmerId;
-	}
-
+	
 	public String getCustomerPhone() {
 		return customerPhone;
 	}

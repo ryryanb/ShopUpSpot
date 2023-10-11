@@ -22,12 +22,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	
-	public Product getProductById(String productId) {
+	public Product getProductById(Long productId) {
 		return productRepository.findById(productId).orElse(null);
 	}
 
 	
-	public void deleteProduct(String productId) {
+	public void deleteProduct(Long productId) {
 		productRepository.deleteById(productId);
 	}
 	
@@ -38,5 +38,9 @@ public class ProductServiceImpl implements ProductService {
 	public void editProduct(Product product){
 		productRepository.save(product);
 	}
+	
+	public List<Product> saveAllProducts(List<Product> products) {
+        return productRepository.saveAll(products);
+    }
 
 }

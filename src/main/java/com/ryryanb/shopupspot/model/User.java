@@ -8,7 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -16,7 +18,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 2681531852204068105L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String userId;
+	private Long userId;
 	private String emailId;
 	private String password;
 	private boolean enabled;
@@ -32,13 +34,7 @@ public class User implements Serializable {
 		this.customer = customer;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+	
 
 	public String getPassword() {
 		return password;

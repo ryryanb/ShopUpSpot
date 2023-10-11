@@ -21,13 +21,13 @@ public class CartServiceImpl implements CartService {
         this.customerOrderService = customerOrderService;
     }
 
-	public Cart getCartByCartId(String CartId) {
+	public Cart getCartByCartId(Long CartId) {
 
 		Cart cart = cartRepository.findById(CartId).orElse(null);
 		return cart;
 	}
 	
-	public Cart validate(String cartId) throws IOException {
+	public Cart validate(Long cartId) throws IOException {
 		Cart cart = getCartByCartId(cartId);
 		if (cart == null || cart.getCartItem().size() == 0) {
 			throw new IOException(cartId + "");
@@ -38,7 +38,7 @@ public class CartServiceImpl implements CartService {
 
 	public void update(Cart cart) {
 
-		String cartId = cart.getCartId();
+		Long cartId = cart.getCartId();
 		double grandTotal = customerOrderService.getCustomerOrderGrandTotal(cartId);
 		cart.setTotalPrice(grandTotal);
 

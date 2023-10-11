@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ryryanb.shopupspot.model.Query;
 
-public interface QueryRepository extends JpaRepository<Query, String> {
+public interface QueryRepository extends JpaRepository<Query, Long> {
 
 
 }

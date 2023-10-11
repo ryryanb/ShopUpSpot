@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.thymeleaf.org/extras/spring-form">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Edit Product</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/resource/images/favicon1.png}" />
+    <link rel="stylesheet" href="@{/resource/bootstrap/css/bootstrap.min.css}" />
+    <script src="@{/resource/js/jquery.js}"></script>
+    <script src="@{/resource/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/register.css}" />
+</head>
+<body>
+    <div th:replace="~{navbar :: nav}"></div>
+    <div class="container" style="margin-bottom: 19px">
+        <h1 class="well">Update Product !</h1>
+        <div class="col-lg-12 well">
+            <div class="row">
+                <!-- Thymeleaf form -->
+                <form th:action="@{/admin/product/editProduct}" method="post" th:object="${editProductObj}">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="productId">Product Id</label>
+                                <input type="text" placeholder="Enter ProductId.." class="form-control"
+                                       th:field="*{productId}" readonly="readonly" />
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" placeholder="Enter Product Name.." class="form-control"
+                                       th:field="*{productName}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Product Description</label>
+                            <textarea placeholder="Enter First Name.." class="form-control"
+                                      th:field="*{productDescription}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Product Category</label>
+                            <div>
+                                <input type="radio" th:field="*{productCategory}" value="Android" />
+                                Android
+                                <input type="radio" th:field="*{productCategory}" value="Windows" />
+                                Windows
+                                <input type="radio" th:field="*{productCategory}" value="Linux" />
+                                Linux
+                                <input type="radio" th:field="*{productCategory}" value="Mac" />
+                                Mac
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label for="productManufacturer">Product Manufacturer</label>
+                                <input type="text" placeholder="Enter Product Manufacurer.." class="form-control"
+                                       th:field="*{productManufacturer}" />
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="productPrice">Product Price</label>
+                                <input type="text" placeholder="Enter Product Price.." class="form-control"
+                                       th:field="*{productPrice}" />
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="unitStock">Number of Products</label>
+                                <input type="text" placeholder="Number of Products.." class="form-control"
+                                       th:field="*{unitStock}" />
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-lg btn-info">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

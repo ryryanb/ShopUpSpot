@@ -8,7 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "shippingAddress")
 public class ShippingAddress implements Serializable {
@@ -17,7 +19,7 @@ public class ShippingAddress implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String shippingAddressId;
+	private Long shippingAddressId;
 
 	private String address;
 	private String city;
@@ -28,13 +30,7 @@ public class ShippingAddress implements Serializable {
 	@OneToOne(mappedBy = "shippingAddress")
 	private Customer customer;
 
-	public String getBillingAddressId() {
-		return shippingAddressId;
-	}
-
-	public void setBillingAddressId(String billingAddressId) {
-		this.shippingAddressId = billingAddressId;
-	}
+	
 
 	public String getAddress() {
 		return address;

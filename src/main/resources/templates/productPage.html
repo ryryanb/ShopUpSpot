@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Products</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/resource/images/favicon1.png}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script th:src="@{/resource/js/productController.js}"></script>
+</head>
+<body>
+    <div ng-app="myapp">
+        <div class="container" style="width: 829px">
+            <h2>Product Details</h2>
+            <p>Details of the Product</p>
+            <table class="table table-bordered" id="prod">
+                <tbody>
+                    <tr>
+                        <td>Prodcut Image</td>
+                        <td>
+                            <img th:src="@{/resource/images/products/{productId}.jpg}"
+                                width="40%" th:alt="${productObj.productName}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prodcut ID</td>
+                        <td th:text="${productObj.productId}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Name</td>
+                        <td th:text="${productObj.productName}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Category</td>
+                        <td th:text="${productObj.productCategory}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Description</td>
+                        <td th:text="${productObj.productDescription}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Manufacturer</td>
+                        <td th:text="${productObj.productManufacturer}"></td>
+                    </tr>
+                    <tr>
+                        <td>Product Price</td>
+                        <td th:text="${productObj.productPrice}"></td>
+                    </tr>
+                    <tr>
+                        <td>Stock Available</td>
+                        <td th:text="${productObj.unitStock}"></td>
+                    </tr>
+                    <tr>
+                        <td>Add to Cart:</td>
+                        <td>
+                            <div ng-controller="myController">
+                                <a th:href="@{/cart/add/{productObj.productId}}" class="btn btn-info"
+                                    style="margin-top: 0px; width: 150px; float: left; margin-right: 31px;">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                                <!-- Assuming you have 'ROLE_USER' available as a variable -->
+                                
+                                <th:block sec:authorize="hasRole('ROLE_USER')">
+    <a href="#" th:onclick="addToCart(${productObj.productId})"
+                                   class="btn btn-info" style="margin-top: 0px; width: 150px; float: right; margin-right: 31px;">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+</th:block>
+                                
+                                <a th:href="@{/getAllProducts}" class="btn btn-info"
+                                    style="margin-top: 0px; width: 150px; float: right; margin-right: 31px;">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

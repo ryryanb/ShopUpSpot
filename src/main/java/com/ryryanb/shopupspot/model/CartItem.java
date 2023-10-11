@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "cartitem")
 public class CartItem implements Serializable {
@@ -20,7 +22,7 @@ public class CartItem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String cartItemId;
+	private Long cartItemId;
 
 	private int quality;
 
@@ -35,14 +37,7 @@ public class CartItem implements Serializable {
 	@JsonIgnore
 	private Cart cart;
 
-	public String getCartItemId() {
-		return cartItemId;
-	}
-
-	public void setCartItemId(String cartItemId) {
-		this.cartItemId = cartItemId;
-	}
-
+	
 	public int getQuality() {
 		return quality;
 	}

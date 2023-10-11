@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Product Management</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/resource/images/favicon1.png}" />
+    <link rel="stylesheet" th:href="@{/resource/bootstrap/css/bootstrap.min.css}" />
+    <script th:src="@{/resource/js/jquery.js}"></script>
+    <script th:src="@{/resource/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/ProductList.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script th:src="@{/resource/js/productController.js}"></script>
+</head>
+<body ng-app="myapp">
+    <!-- Navigation Bar -->
+    <div th:replace="~{navbar :: nav}"></div>
+
+    <div class="container" id="productTable" style="width: 1145px; margin-bottom: 180px;">
+        <h2>Product Management</h2>
+        <p>The List of Products in our Database</p>
+        <table class="table table-hover" id="productList">
+            <thead>
+                <tr>
+                    <th>Screen-Shot</th>
+                    <th>Product Id</th>
+                    <th>Category</th>
+                    <th>Product Name</th>
+                    <th>Products Price</th>
+                    <th>Stock Unit</th>
+                    <th>Description</th>
+                    <th>Manufacturer</th>
+                    <th>
+                        <span sec:authorize="hasAnyRole('ROLE_USER')">View / Add to Cart</span>
+                        <span sec:authorize="hasAnyRole('ROLE_ADMIN')">Edit/Delete</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prod : ${products}">
+                    <td style="width: 171px">
+                        <img th:src="@{/resource/images/products/__${prod.productId}__.jpg}" style="width: 100px; height: 90px;" th:alt="${prod.productName}" />
+                    </td>
+                    <td th:text="${prod.productId}"></td>
+                    <td th:text="${prod.productCategory}"></td>
+                    <td th:text="${prod.productName}"></td>
+                    <td th:text="${prod.productPrice}"></td>
+                    <td th:text="${prod.unitStock}"></td>
+                    <td style="width: 180px" th:text="${prod.productDescription}"></td>
+                    <td th:text="${prod.productManufacturer}"></td>
+                    <td ng-controller="myController">
+                        <a th:href="@{/getProductById/__${prod.productId}__}" class="btn btn-info" role="button">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+
+                        <span sec:authorize="hasAnyRole('ROLE_USER')">
+                            <a href="#" ng-click="addToCart(${prod.productId})" class="btn btn-primary" style="margin-left: 5px">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </a>
+                        </span>
+
+                        <span sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                            <a th:href="@{/admin/product/editProduct/__${prod.productId}__}" class="btn btn-success" style="margin-left: 5px">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <a th:href="@{/admin/delete/__${prod.productId}__}" class="btn btn-danger" style="margin-left: 5px">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include the footer -->
+    <div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

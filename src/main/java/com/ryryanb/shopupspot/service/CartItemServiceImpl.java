@@ -23,7 +23,7 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 	
 	@Transactional
-    public void removeCartItem(String cartItemId) {
+    public void removeCartItem(Long cartItemId) {
         // Find the cart item by its ID
         CartItem cartItem = cartItemRepository.findById(cartItemId).orElse(null);
 

@@ -19,11 +19,10 @@ import jakarta.validation.Valid;
 @Controller
 public class HomeController {
 	
-	@GetMapping("/")
-    public String hello(Model model) {
-        model.addAttribute("message", "Hello from Thymeleaf!");
-        return "index"; // Corresponds to the template name (index.html)
-    }
+	@RequestMapping({ "/index", "/index1" })
+	public String sayIndex() {
+		return "index1";
+	}
 
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,

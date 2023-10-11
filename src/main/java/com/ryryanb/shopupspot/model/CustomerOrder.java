@@ -9,7 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "customerorder")
 public class CustomerOrder implements Serializable {
@@ -18,7 +20,7 @@ public class CustomerOrder implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String customerOrderId;
+	private Long customerOrderId;
 
 	@OneToOne
 	@JoinColumn(name = "cartId")
@@ -44,13 +46,7 @@ public class CustomerOrder implements Serializable {
 		this.billingAddress = billingAddress;
 	}
 
-	public String getCustomerOrderId() {
-		return customerOrderId;
-	}
-
-	public void setCustomerOrderId(String customerOrderId) {
-		this.customerOrderId = customerOrderId;
-	}
+	
 
 	public Cart getCart() {
 		return cart;

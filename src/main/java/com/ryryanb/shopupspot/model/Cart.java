@@ -15,7 +15,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "cart")
 public class Cart implements Serializable {
@@ -24,7 +26,7 @@ public class Cart implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String cartId;
+	private Long cartId;
 
 	@OneToOne
 	@JoinColumn(name = "customerId")
@@ -36,13 +38,7 @@ public class Cart implements Serializable {
 
 	private double totalPrice;
 
-	public String getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(String cartId) {
-		this.cartId = cartId;
-	}
+	
 
 	public Customer getCustomer() {
 		return customer;

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ryryanb.shopupspot.model.CartItem;
 
-public interface CartItemRepository extends JpaRepository<CartItem, String> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
 }

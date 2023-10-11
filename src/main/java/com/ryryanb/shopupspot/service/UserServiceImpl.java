@@ -25,7 +25,7 @@ List<User> users=	 userRepository.findAll();
 	}
 
 	@Transactional
-	public void deleteUser(String userId) {
+	public void deleteUser(Long userId) {
 		userRepository.deleteById(userId);
 	}
 	@Transactional 
@@ -33,7 +33,7 @@ List<User> users=	 userRepository.findAll();
 		userRepository.save(user);
 	}
 	
-	public User getUserById(String userId) {
+	public User getUserById(Long userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
 		User user = userOptional.orElse(null); 
 		return user;
